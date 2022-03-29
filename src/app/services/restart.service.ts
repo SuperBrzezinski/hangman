@@ -18,8 +18,8 @@ export class RestartService {
 
   restart() {
     this.wordService.getNewWord();
-    this.stateService.restartState();
     this.uncoveredLettersService.restart();
     this.foulService.restartFouls();
+    this.stateService.restartState();
   }
 }
