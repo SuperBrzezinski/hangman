@@ -1,0 +1,13 @@
+<div class="center">
+  <div class="keyboard">
+    <div class="first-row">
+      <button *ngFor="let letter of firstRow" (click)="btnPress(letter)" [disabled]="isDisabled(letter)">{{ letter }}</button>
+    </div>
+    <div class="second-row">
+      <button *ngFor="let letter of secondRow" (click)="btnPress(letter)" [disabled]="isDisabled(letter)">{{ letter }}</button>
+    </div>
+    <div class="third-row">
+      <button *ngFor="let letter of thirdRow" (click)="btnPress(letter)" [disabled]="isDisabled(letter)">{{ letter }}</button>
+    </div>
+  </div>
+</div>
