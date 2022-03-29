@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FoulService } from './foul.service';
+import { FoulService } from './fouls.service';
 import { WordDisplayService } from './word-display.service';
 
 export type State = 'playing' | 'win' | 'loose';
@@ -11,7 +11,7 @@ export type State = 'playing' | 'win' | 'loose';
 export class StateService {
   public state: State = 'playing';
   $Listener = new Subject<State>();
-  constructor(private foulService: FoulService, private wordDisplayService: WordDisplayService) {
+  constructor(private foulsService: FoulsService, private wordDisplayService: WordDisplayService) {
     this.init();
   }
 

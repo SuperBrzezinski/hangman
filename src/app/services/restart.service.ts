@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FoulService } from './foul.service';
+import { FoulService } from './fouls.service';
 import { StateService } from './state.service';
 import { UncoveredLettersService } from './uncovered-letters.service';
 import { WordDisplayService } from './word-display.service';
@@ -12,7 +12,7 @@ export class RestartService {
   constructor(
     private wordService: WordService,
     private uncoveredLettersService: UncoveredLettersService,
-    private foulService: FoulService,
+    private foulsService: FoulsService,
     private stateService: StateService
   ) {}
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { UncoveredLettersService } from './uncovered-letters.service';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Letter, UncoveredLettersService } from './uncovered-letters.service';
 import { WordService } from './word.service';
 
 @Injectable({
@@ -9,24 +9,33 @@ import { WordService } from './word.service';
 export class FoulService {
   private currentWordArr: string[] = [];
 
-  private foulState = 0;
+  // private foulState = 0;
 
-  $Listener = new Subject<number>();
+  $Listener = new BehaviorSubject<number>(0);
 
   constructor(private uncoveredLettersService: UncoveredLettersService, private wordService: WordService) {
     this.init();
   }
 
+  get listener$() {
+    return this.$Listener.asObservable();
+  }
+
+  countFouls(letters: Letter[]) {
+    return letters.filter((letter) => !letter.included).length;
+  }
+
   restartFouls() {
-    this.foulState = 0;
-    this.$Listener.next(this.foulState);
+    // this.foulState = 0;
+    this.$Listener.next(0);
   }
 
   private foulEstimation(letter: string) {
-    if (!this.currentWordArr.includes(letter)) {
-      this.foulState++;
-      this.$Listener.next(this.foulState);
+    if (this.currentWordArr.includes(letter)) {
+      return;
     }
+
+    this.$Listener.next(this.$Listener.getValue() + 1);
   }
 
   private init() {
